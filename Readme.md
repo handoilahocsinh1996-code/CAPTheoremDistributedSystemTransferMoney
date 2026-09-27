@@ -140,5 +140,48 @@ Request:
 ### API 2: Chuyển tiền
 
 ```http
-PO
+POST /accounts/{id}/transfer
 ```
+
+Request:
+
+```json
+{
+  "toAccountId": 2,
+  "amount": 200000
+}
+```
+
+Ví dụ:
+
+```text
+Trước:
+
+Account A = 1.000.000
+Account B =   500.000
+
+
+A chuyển 200.000 cho B
+
+
+Sau:
+
+Account A =   800.000
+Account B =   700.000
+```
+
+API chuyển tiền sử dụng Transaction để đảm bảo thao tác trừ tiền và cộng tiền được xử lý nhất quán.
+
+---
+
+# Kết luận
+
+Bài tập đáp ứng 5 yêu cầu:
+
+| Yêu cầu              | Kết quả                                      |
+| -------------------- | -------------------------------------------- |
+| Chọn DB              | MySQL                                        |
+| Chọn CAP Strategy    | CP                                           |
+| Justify choice       | Ưu tiên Consistency cho hệ thống chuyển tiền |
+| Architecture Diagram | Client → Gateway → Application Nodes → MySQL |
+| Bonus API            | Create Account + Transfer Money              |
